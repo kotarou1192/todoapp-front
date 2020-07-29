@@ -1,3 +1,9 @@
+## demo page
+
+https://kotarou1192.github.io/todoapp-front/public/index.html
+
+## default readme
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
