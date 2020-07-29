@@ -1,0 +1,55 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+  padding: 16px;
+}
+
+.todo-card__button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  color: crimson;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.todo-card {
+  position: relative;
+  width: 100%;
+  border-top: solid 5px black;
+  margin-top: 10px;
+  color: inherit;
+  box-sizing: border-box;
+  padding: 16px 16px 16px 60px;
+  box-shadow:0 3px 5px cadetblue;
+}
+
+.todo-card__text {
+  font-size: medium;
+}
+
+.todo-card__date {
+  font-size: small;
+}
+
+.todo-card__done {
+  background-color: rgb(87, 87, 87);
+}
+
+.todo-card__doing {
+  background-color: white;
+}
