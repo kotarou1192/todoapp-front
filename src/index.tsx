@@ -31,7 +31,7 @@ interface Response {
   data: APITodoResponse[];
 }
 
-export const baseUrl = "https://frozen-savannah-16395.herokuapp.com";
+export const baseUrl = "https://takashiii-hq.com";
 
 export const fetchTodos = async (
   loginToken: string
