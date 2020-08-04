@@ -1,0 +1,41 @@
+.header__delete-your-account-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  vertical-align: baseline;
+  top: 3px;
+  right: 0;
+  left: 56px;
+  bottom: 0;
+  height: 30px;
+  width: 140px;
+  border-radius: 0 10px 0 10px;
+  background-color: rgba(172, 255, 47, 0.795);
+}
+
+.header__delete-account-email-form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  vertical-align: baseline;
+  left: 205px;
+  top: 3px;
+  height: 30px;
+  width: 160px;
+}
+
+.header__delete-account-submit-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  vertical-align: baseline;
+  left: 368px;
+  top: 3px;
+  height: 30px;
+  width: 30px;
+  border-radius: 0 10px 0 10px;
+  background-color: rgba(172, 255, 47, 0.795);
+}

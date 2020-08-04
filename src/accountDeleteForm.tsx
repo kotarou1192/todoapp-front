@@ -68,5 +68,5 @@ const DeleteForm = (props: { isDisplay: boolean }) => {
       </div>
     );
   }
-  return <p></p>;
+  return <div></div>;
 };
