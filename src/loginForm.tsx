@@ -86,6 +86,9 @@ export const LoginForm = (): JSX.Element => {
           onClick={changeForm}
         ></input>
       </p>
+      <a href="https://takashiii-hq.com/password_resets/new">
+        パスワードを忘れましたか？
+      </a>
     </div>
   );
 };

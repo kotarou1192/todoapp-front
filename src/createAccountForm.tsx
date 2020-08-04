@@ -1,51 +1,10 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
-import { baseUrl, renderTodosFromAPI } from "./index";
+import { baseUrl } from "./index";
 import Cookies from "js-cookie";
 import ReactDOM from "react-dom";
 import { LoginForm } from "./loginForm";
-
-const smashAPI = async (
-  email: string,
-  password: string,
-  confirmPassword: string,
-  name: string
-) => {
-  if (name.length < 1 && name.length > 200)
-    return window.alert("1invalid name");
-  if (name.replace(/[\n|\s]/g, "").length < 1)
-    return window.alert("invalid name");
-
-  if (
-    !email.match(
-      // eslint-disable-next-line no-useless-escape
-      /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
-    )
-  )
-    return window.alert("invalid email address");
-
-  if (password !== confirmPassword)
-    return window.alert("confirmation password does not match");
-
-  const url = baseUrl + "/users/create";
-  axios
-    .post(url, {
-      email: email,
-      password: password,
-      name: name,
-    })
-    .then((response) => {
-      if (response.data.status === "SUCCESS") {
-        Cookies.set("todoapptoken", response.data.token);
-        return renderTodosFromAPI();
-      }
-      window.alert("input value is invalid");
-    })
-    .catch((e) => {
-      console.error(e);
-    });
-};
 
 const switchLoginForm = () => {
   ReactDOM.render(
@@ -61,6 +20,62 @@ export const CreateAccountForm = (): JSX.Element => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [disabled, setDisabled] = useState<boolean>(false);
+
+  const smashAPI = async (
+    email: string,
+    password: string,
+    confirmPassword: string,
+    name: string
+  ) => {
+    if (name.length < 1 && name.length > 200)
+      return window.alert("1invalid name");
+    if (name.replace(/[\n|\s]/g, "").length < 1)
+      return window.alert("invalid name");
+    if (password.length < 6) return window.alert("パスワードが短すぎます");
+
+    if (
+      !email.match(
+        // eslint-disable-next-line no-useless-escape
+        /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+      )
+    )
+      return window.alert("無効なメールアドレスです");
+
+    if (password !== confirmPassword)
+      return window.alert("確認パスワードが一致しません");
+
+    setDisabled(true);
+
+    const url = baseUrl + "/users/create";
+    axios
+      .post(url, {
+        email: email,
+        password: password,
+        name: name,
+      })
+      .then((response) => {
+        if (response.data.status === "SUCCESS") {
+          Cookies.set("todoapptoken", response.data.token);
+          setName("");
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          window.alert("入力されたメールアドレスに確認メールを送信しました");
+          return switchLoginForm();
+        }
+        let string = "";
+        Object.keys(response.data.error).forEach((error, index) => {
+          string += `${error}: ${response.data.error[error][index]}`;
+        });
+        window.alert(string);
+        setDisabled(false);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
   return (
     <div>
       <p>create account</p>
@@ -107,6 +122,8 @@ export const CreateAccountForm = (): JSX.Element => {
       <p>
         <input
           type="submit"
+          id="create-account"
+          disabled={disabled}
           value="create-account"
           onClick={() => smashAPI(email, password, confirmPassword, name)}
         ></input>

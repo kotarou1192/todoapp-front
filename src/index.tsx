@@ -70,7 +70,7 @@ const logout = () => {
     });
 };
 
-export const renderTodosFromAPI = async () => {
+export const renderTodosFromAPI = async (): Promise<void> => {
   const loginToken = Cookies.get("todoapptoken") || "hoge";
   const target = document.getElementById("root");
   try {
