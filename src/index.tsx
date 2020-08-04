@@ -4,6 +4,8 @@ import { App } from "./apps/app";
 import axios from "axios";
 import { LoginForm } from "./loginForm";
 import * as Cookies from "js-cookie";
+import { AccountDeleteForm } from "./accountDeleteForm";
+import "./styles/src/index.css";
 
 export interface APITodoResponse {
   id: number;
@@ -81,8 +83,14 @@ export const renderTodosFromAPI = async (): Promise<void> => {
     }
     ReactDOM.render(
       <div>
-        <div>
-          <input type="submit" value="log-out" onClick={logout}></input>
+        <div className="header">
+          <input
+            className="header__logout-button"
+            type="submit"
+            value="log-out"
+            onClick={logout}
+          ></input>
+          <AccountDeleteForm />
         </div>
         <div>
           <App todos={response} />
