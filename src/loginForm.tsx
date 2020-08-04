@@ -5,6 +5,7 @@ import { App } from "./apps/app";
 import ReactDOM from "react-dom";
 import Cookies from "js-cookie";
 import { CreateAccountForm } from "./createAccountForm";
+import "./styles/src/loginForm.css";
 
 const changeForm = () => {
   ReactDOM.render(
@@ -54,9 +55,9 @@ export const LoginForm = (): JSX.Element => {
   tryLogin();
 
   return (
-    <div>
-      <p>log-in</p>
-      <p>
+    <div className="login-form">
+      <p className="login-form__text">log-in</p>
+      <p className="login-form__email">
         <input
           type="email"
           placeholder="email"
@@ -66,7 +67,7 @@ export const LoginForm = (): JSX.Element => {
           }}
         ></input>
       </p>
-      <p>
+      <p className="login-form__password">
         <input
           type="password"
           placeholder="password"
@@ -76,19 +77,21 @@ export const LoginForm = (): JSX.Element => {
           }}
         ></input>
       </p>
-      <p>
+      <p className="login-form__login-button">
         <input type="submit" onClick={loginTodoApp} value="log-in"></input>
       </p>
-      <p>
+      <p className="login-form__create-account-button">
         <input
           type="submit"
           value="create-account"
           onClick={changeForm}
         ></input>
       </p>
-      <a href="https://takashiii-hq.com/password_resets/new">
-        パスワードを忘れましたか？
-      </a>
+      <p className="login-form__link-text">
+        <a href="https://takashiii-hq.com/password_resets/new">
+          パスワードを忘れましたか？
+        </a>
+      </p>
     </div>
   );
 };

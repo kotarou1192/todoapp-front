@@ -5,6 +5,7 @@ import { baseUrl } from "./index";
 import Cookies from "js-cookie";
 import ReactDOM from "react-dom";
 import { LoginForm } from "./loginForm";
+import "./styles/src/loginForm.css";
 
 const switchLoginForm = () => {
   ReactDOM.render(
@@ -77,9 +78,9 @@ export const CreateAccountForm = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <p>create account</p>
-      <p>
+    <div className="login-form">
+      <p className="login-form__text">create account</p>
+      <p className="login-form__password">
         <input
           type="text"
           placeholder="your_name"
@@ -89,7 +90,7 @@ export const CreateAccountForm = (): JSX.Element => {
           }}
         ></input>
       </p>
-      <p>
+      <p className="login-form__password">
         <input
           type="email"
           placeholder="email"
@@ -99,7 +100,7 @@ export const CreateAccountForm = (): JSX.Element => {
           }}
         ></input>
       </p>
-      <p>
+      <p className="login-form__password">
         <input
           type="password"
           placeholder="password"
@@ -118,8 +119,7 @@ export const CreateAccountForm = (): JSX.Element => {
           }}
         ></input>
       </p>
-      <p></p>
-      <p>
+      <p className="login-form__login-button">
         <input
           type="submit"
           id="create-account"
@@ -128,7 +128,7 @@ export const CreateAccountForm = (): JSX.Element => {
           onClick={() => smashAPI(email, password, confirmPassword, name)}
         ></input>
       </p>
-      <p>
+      <p className="login-form__login-button">
         <input
           type="submit"
           value="back to login"
