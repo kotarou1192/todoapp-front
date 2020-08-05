@@ -1,6 +1,6 @@
 ## demo page
 
-https://kotarou1192.github.io/todoapp-front/public/index.html
+https://takashiii-hq.com
 
 ## default readme
 
